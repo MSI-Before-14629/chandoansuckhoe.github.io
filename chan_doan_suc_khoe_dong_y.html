@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chẩn đoán Sức khỏe - Phương pháp Đông y</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            max-width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            margin: 10px 0;
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 120px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .treatment {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Chẩn đoán Sức khỏe theo phương pháp Đông y</h2>
+
+    <label for="eyeSymptoms">Triệu chứng mắt:</label>
+    <textarea id="eyeSymptoms" placeholder="Ví dụ: mắt mờ, đỏ, khô..."></textarea>
+
+    <label for="earSymptoms">Triệu chứng tai:</label>
+    <textarea id="earSymptoms" placeholder="Ví dụ: ù tai, nghe kém, đau tai..."></textarea>
+
+    <label for="noseSymptoms">Triệu chứng mũi:</label>
+    <textarea id="noseSymptoms" placeholder="Ví dụ: nghẹt mũi, chảy mũi, viêm xoang..."></textarea>
+
+    <label for="facialSymptoms">Triệu chứng cơ mặt:</label>
+    <textarea id="facialSymptoms" placeholder="Ví dụ: đau cơ mặt, tê liệt cơ mặt, co giật..."></textarea>
+
+    <label for="pulseSymptoms">Triệu chứng mạch máu:</label>
+    <textarea id="pulseSymptoms" placeholder="Ví dụ: mạch yếu, mạch nhanh, mạch bất thường..."></textarea>
+
+    <label for="heartRateSymptoms">Triệu chứng nhịp tim:</label>
+    <textarea id="heartRateSymptoms" placeholder="Ví dụ: tim đập nhanh, khó thở, mệt mỏi..."></textarea>
+
+    <button onclick="analyzeHealth()">Chẩn đoán</button>
+
+    <div class="result" id="result" style="display:none;">
+        <h3>Kết quả chẩn đoán:</h3>
+        <p id="diagnosis"></p>
+    </div>
+
+    <div class="treatment" id="treatment" style="display:none;">
+        <h3>Phương pháp điều trị (Theo Đông y):</h3>
+        <p id="treatmentText"></p>
+    </div>
+</div>
+
+<script>
+    function analyzeHealth() {
+        // Lấy giá trị từ các trường nhập liệu
+        const eyeSymptoms = document.getElementById('eyeSymptoms').value.toLowerCase();
+        const earSymptoms = document.getElementById('earSymptoms').value.toLowerCase();
+        const noseSymptoms = document.getElementById('noseSymptoms').value.toLowerCase();
+        const facialSymptoms = document.getElementById('facialSymptoms').value.toLowerCase();
+        const pulseSymptoms = document.getElementById('pulseSymptoms').value.toLowerCase();
+        const heartRateSymptoms = document.getElementById('heartRateSymptoms').value.toLowerCase();
+
+        // Kiểm tra nếu người dùng chưa nhập gì
+        if (!eyeSymptoms && !earSymptoms && !noseSymptoms && !facialSymptoms && !pulseSymptoms && !heartRateSymptoms) {
+            alert("Vui lòng nhập các triệu chứng!");
+            return;
+        }
+
+        // Khởi tạo biến chẩn đoán và phương pháp điều trị
+        let diagnosis = "Tình trạng sức khỏe ổn định.";
+        let treatmentText = "Không có biện pháp điều trị cần thiết.";
+
+        // Phân tích triệu chứng theo từng bộ phận cơ thể
+        if (eyeSymptoms.includes("mờ") || eyeSymptoms.includes("đỏ") || eyeSymptoms.includes("khô")) {
+            diagnosis = "Triệu chứng mắt mờ, đỏ, khô có thể liên quan đến hư can huyết, hư âm khí hoặc suy thận.";
+            treatmentText = "Cần bổ sung âm khí và dưỡng can huyết, dùng các bài thuốc như 'Can huyết bổ thang', ăn nhiều thực phẩm bổ mắt như cà rốt, rau bina.";
+        }
+        if (earSymptoms.includes("ù tai") || earSymptoms.includes("nghe kém") || earSymptoms.includes("đau tai")) {
+            diagnosis = "Triệu chứng ù tai, nghe kém có thể do thận hư, thiếu tinh khí hoặc khí huyết không lưu thông tốt.";
+            treatmentText = "Dùng các bài thuốc bổ thận, như 'Thận khí hoàn', ăn các thực phẩm bổ thận như hạt sen, nấm linh chi.";
+        }
+        if (noseSymptoms.includes("nghẹt mũi") || noseSymptoms.includes("chảy mũi") || noseSymptoms.includes("viêm xoang")) {
+            diagnosis = "Triệu chứng nghẹt mũi, chảy mũi, viêm xoang có thể do tỳ vị yếu, khí phế kém.";
+            treatmentText = "Cần bổ tỳ và phế, dùng các bài thuốc như 'Bổ phế thang', uống nước gừng để làm ấm phổi.";
+        }
+        if (facialSymptoms.includes("đau cơ mặt") || facialSymptoms.includes("tê liệt cơ mặt") || facialSymptoms.includes("co giật")) {
+            diagnosis = "Triệu chứng đau cơ mặt, tê liệt cơ mặt có thể là dấu hiệu của phong hàn hoặc thiếu máu.";
+            treatmentText = "Cần dùng các bài thuốc bổ máu như 'Huyết bổ thang', châm cứu hoặc xoa bóp để cải thiện lưu thông máu.";
+        }
+        if (pulseSymptoms.includes("mạch yếu") || pulseSymptoms.includes("mạch nhanh") || pulseSymptoms.includes("mạch bất thường")) {
+            diagnosis = "Triệu chứng mạch yếu, nhanh hoặc bất thường có thể là dấu hiệu của khí huyết kém hoặc bệnh lý tim mạch.";
+            treatmentText = "Cần bổ khí huyết, cải thiện lưu thông máu, dùng các bài thuốc như 'Bổ khí thang' hoặc 'Tâm vương thang'.";
+        }
+        if (heartRateSymptoms.includes("tim đập nhanh") || heartRateSymptoms.includes("khó thở") || heartRateSymptoms.includes("mệt mỏi")) {
+            diagnosis = "Triệu chứng tim đập nhanh, khó thở có thể là dấu hiệu của bệnh tim mạch hoặc thiếu máu.";
+            treatmentText = "Cần bổ huyết và an thần, dùng các bài thuốc như 'An thần thang' hoặc 'Cao huyết áp thang'.";
+        }
+
+        // Hiển thị kết quả chẩn đoán
+        document.getElementById('diagnosis').textContent = diagnosis;
+        document.getElementById('result').style.display = "block";
+
+        // Hiển thị phương pháp điều trị
+        document.getElementById('treatmentText').textContent = treatmentText;
+        document.getElementById('treatment').style.display = "block";
+    }
+</script>
+
+</body>
+</html>
