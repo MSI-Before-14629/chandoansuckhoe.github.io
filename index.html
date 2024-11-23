@@ -3,69 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chẩn đoán Sức khỏe - Phương pháp Đông y</title>
+    <title>Chẩn đoán Sức khỏe - Đông y Toàn diện</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: "Roboto", Arial, sans-serif;
+            background-color: #f0f8ff;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            padding-top: 20px;
+            min-height: 100vh;
         }
         .container {
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 600px;
-            max-width: 100%;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
         }
         h2 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
         }
         label {
             font-size: 16px;
-            margin: 10px 0;
+            margin: 10px 0 5px;
             display: block;
         }
         textarea {
             width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px;
+            padding: 12px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            height: 120px;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: none;
+            background: #fdfdfd;
+        }
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            background-color: #eef6ff;
         }
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            padding: 15px;
+            background-color: #007bff;
             border: none;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: all 0.3s;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
-        .result {
+        .result, .treatment {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
         }
-        .treatment {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #e9ecef;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .result h3, .treatment h3 {
+            color: #007bff;
+        }
+        .notes {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
         }
     </style>
 </head>
@@ -74,26 +92,28 @@
 <div class="container">
     <h2>Chẩn đoán Sức khỏe theo phương pháp Đông y</h2>
 
+    <!-- Các trường nhập liệu -->
     <label for="eyeSymptoms">Triệu chứng mắt:</label>
-    <textarea id="eyeSymptoms" placeholder="Ví dụ: mắt mờ, đỏ, khô..."></textarea>
+    <textarea id="eyeSymptoms" placeholder="Nhập tình trạng mắt (ví dụ: mờ, đỏ, khô, đau nhức, ngứa)..."></textarea>
 
-    <label for="earSymptoms">Triệu chứng tai:</label>
-    <textarea id="earSymptoms" placeholder="Ví dụ: ù tai, nghe kém, đau tai..."></textarea>
+    <label for="pulse">Mạch (trầm, trì, phù, sóc):</label>
+    <textarea id="pulse" placeholder="Nhập tình trạng mạch..."></textarea>
 
-    <label for="noseSymptoms">Triệu chứng mũi:</label>
-    <textarea id="noseSymptoms" placeholder="Ví dụ: nghẹt mũi, chảy mũi, viêm xoang..."></textarea>
+    <label for="tongueCoat">Rêu lưỡi (dày, mỏng, trắng, vàng, đen, nâu):</label>
+    <textarea id="tongueCoat" placeholder="Nhập tình trạng rêu lưỡi..."></textarea>
 
-    <label for="facialSymptoms">Triệu chứng cơ mặt:</label>
-    <textarea id="facialSymptoms" placeholder="Ví dụ: đau cơ mặt, tê liệt cơ mặt, co giật..."></textarea>
+    <label for="urine">Nước tiểu (vàng, trắng, đỏ, đục, ít, nhiều):</label>
+    <textarea id="urine" placeholder="Nhập tình trạng nước tiểu..."></textarea>
 
-    <label for="pulseSymptoms">Triệu chứng mạch máu:</label>
-    <textarea id="pulseSymptoms" placeholder="Ví dụ: mạch yếu, mạch nhanh, mạch bất thường..."></textarea>
+    <label for="menstruation">Kinh nguyệt (nhiều, ít, không đều, đau):</label>
+    <textarea id="menstruation" placeholder="Nhập tình trạng kinh nguyệt..."></textarea>
 
-    <label for="heartRateSymptoms">Triệu chứng nhịp tim:</label>
-    <textarea id="heartRateSymptoms" placeholder="Ví dụ: tim đập nhanh, khó thở, mệt mỏi..."></textarea>
+    <label for="stool">Phân (lỏng, nát, táo bón):</label>
+    <textarea id="stool" placeholder="Nhập tình trạng phân..."></textarea>
 
     <button onclick="analyzeHealth()">Chẩn đoán</button>
 
+    <!-- Phần hiển thị kết quả -->
     <div class="result" id="result" style="display:none;">
         <h3>Kết quả chẩn đoán:</h3>
         <p id="diagnosis"></p>
@@ -103,60 +123,149 @@
         <h3>Phương pháp điều trị (Theo Đông y):</h3>
         <p id="treatmentText"></p>
     </div>
+
+    <div class="notes">
+        <p>* Lưu ý: Kết quả chỉ mang tính tham khảo. Vui lòng tham vấn ý kiến bác sĩ hoặc chuyên gia Đông y trước khi áp dụng điều trị.</p>
+    </div>
 </div>
 
 <script>
     function analyzeHealth() {
-        // Lấy giá trị từ các trường nhập liệu
+        const pulse = document.getElementById('pulse').value.toLowerCase();
+        const tongueCoat = document.getElementById('tongueCoat').value.toLowerCase();
+        const urine = document.getElementById('urine').value.toLowerCase();
+        const menstruation = document.getElementById('menstruation').value.toLowerCase();
+        const stool = document.getElementById('stool').value.toLowerCase();
         const eyeSymptoms = document.getElementById('eyeSymptoms').value.toLowerCase();
-        const earSymptoms = document.getElementById('earSymptoms').value.toLowerCase();
-        const noseSymptoms = document.getElementById('noseSymptoms').value.toLowerCase();
-        const facialSymptoms = document.getElementById('facialSymptoms').value.toLowerCase();
-        const pulseSymptoms = document.getElementById('pulseSymptoms').value.toLowerCase();
-        const heartRateSymptoms = document.getElementById('heartRateSymptoms').value.toLowerCase();
 
-        // Kiểm tra nếu người dùng chưa nhập gì
-        if (!eyeSymptoms && !earSymptoms && !noseSymptoms && !facialSymptoms && !pulseSymptoms && !heartRateSymptoms) {
-            alert("Vui lòng nhập các triệu chứng!");
-            return;
-        }
+        let diagnosis = "";
+        let treatmentText = "";
+        let isNormal = true;
 
-        // Khởi tạo biến chẩn đoán và phương pháp điều trị
-        let diagnosis = "Tình trạng sức khỏe ổn định.";
-        let treatmentText = "Không có biện pháp điều trị cần thiết.";
+        // Kiểm tra các chỉ số bình thường
+        if (!pulse.includes("trầm") && !pulse.includes("trì") && !pulse.includes("phù") && !pulse.includes("sóc") &&
+            !tongueCoat.includes("trắng") && !tongueCoat.includes("vàng") && !tongueCoat.includes("đen") &&
+            !urine.includes("vàng") && !urine.includes("đục") && !urine.includes("ít") &&
+            !menstruation.includes("nhiều") && !menstruation.includes("ít") && !menstruation.includes("không đều") && !menstruation.includes("đau") &&
+            !stool.includes("lỏng") && !stool.includes("nát") && !stool.includes("táo bón")) {
 
-        // Phân tích triệu chứng theo từng bộ phận cơ thể
-        if (eyeSymptoms.includes("mờ") || eyeSymptoms.includes("đỏ") || eyeSymptoms.includes("khô")) {
-            diagnosis = "Triệu chứng mắt mờ, đỏ, khô có thể liên quan đến hư can huyết, hư âm khí hoặc suy thận.";
-            treatmentText = "Cần bổ sung âm khí và dưỡng can huyết, dùng các bài thuốc như 'Can huyết bổ thang', ăn nhiều thực phẩm bổ mắt như cà rốt, rau bina.";
-        }
-        if (earSymptoms.includes("ù tai") || earSymptoms.includes("nghe kém") || earSymptoms.includes("đau tai")) {
-            diagnosis = "Triệu chứng ù tai, nghe kém có thể do thận hư, thiếu tinh khí hoặc khí huyết không lưu thông tốt.";
-            treatmentText = "Dùng các bài thuốc bổ thận, như 'Thận khí hoàn', ăn các thực phẩm bổ thận như hạt sen, nấm linh chi.";
-        }
-        if (noseSymptoms.includes("nghẹt mũi") || noseSymptoms.includes("chảy mũi") || noseSymptoms.includes("viêm xoang")) {
-            diagnosis = "Triệu chứng nghẹt mũi, chảy mũi, viêm xoang có thể do tỳ vị yếu, khí phế kém.";
-            treatmentText = "Cần bổ tỳ và phế, dùng các bài thuốc như 'Bổ phế thang', uống nước gừng để làm ấm phổi.";
-        }
-        if (facialSymptoms.includes("đau cơ mặt") || facialSymptoms.includes("tê liệt cơ mặt") || facialSymptoms.includes("co giật")) {
-            diagnosis = "Triệu chứng đau cơ mặt, tê liệt cơ mặt có thể là dấu hiệu của phong hàn hoặc thiếu máu.";
-            treatmentText = "Cần dùng các bài thuốc bổ máu như 'Huyết bổ thang', châm cứu hoặc xoa bóp để cải thiện lưu thông máu.";
-        }
-        if (pulseSymptoms.includes("mạch yếu") || pulseSymptoms.includes("mạch nhanh") || pulseSymptoms.includes("mạch bất thường")) {
-            diagnosis = "Triệu chứng mạch yếu, nhanh hoặc bất thường có thể là dấu hiệu của khí huyết kém hoặc bệnh lý tim mạch.";
-            treatmentText = "Cần bổ khí huyết, cải thiện lưu thông máu, dùng các bài thuốc như 'Bổ khí thang' hoặc 'Tâm vương thang'.";
-        }
-        if (heartRateSymptoms.includes("tim đập nhanh") || heartRateSymptoms.includes("khó thở") || heartRateSymptoms.includes("mệt mỏi")) {
-            diagnosis = "Triệu chứng tim đập nhanh, khó thở có thể là dấu hiệu của bệnh tim mạch hoặc thiếu máu.";
-            treatmentText = "Cần bổ huyết và an thần, dùng các bài thuốc như 'An thần thang' hoặc 'Cao huyết áp thang'.";
+            diagnosis = "Bệnh nhân không sao.";
+            treatmentText = "Không có dấu hiệu bệnh lý, sức khỏe ổn định.";
+            isNormal = false;
         }
 
-        // Hiển thị kết quả chẩn đoán
-        document.getElementById('diagnosis').textContent = diagnosis;
+        // Phân
+        if (stool.includes("lỏng")) {
+            diagnosis += "<strong>Phân lỏng:</strong> Biểu hiện của tỳ vị hư, tỳ không vận hóa được thủy khí. Điều này có thể dẫn đến tình trạng tiêu chảy.<br>";
+            treatmentText += "Khuyến nghị sử dụng bài thuốc 'Bổ tỳ ích khí'.<br>";
+        }
+        if (stool.includes("nát")) {
+            diagnosis += "<strong>Phân nát:</strong> Biểu hiện của tỳ vị suy yếu, dễ dàng bị tiêu chảy hoặc khó khăn trong việc hấp thu dinh dưỡng.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Sao đại hoàng tán'.<br>";
+        }
+        if (stool.includes("táo bón")) {
+            diagnosis += "<strong>Táo bón:</strong> Do phong hàn tích tụ trong cơ thể hoặc khí huyết không lưu thông.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Lợi tiểu thang'.<br>";
+        }
+
+        // Kinh nguyệt
+        if (menstruation.includes("nhiều")) {
+            diagnosis += "<strong>Kinh nguyệt nhiều:</strong> Biểu hiện của huyết nhiệt, khí huyết ứ trệ.<br>";
+            treatmentText += "Khuyến nghị sử dụng bài thuốc 'Thanh nhiệt, điều hòa khí huyết'.<br>";
+        }
+        if (menstruation.includes("ít")) {
+            diagnosis += "<strong>Kinh nguyệt ít:</strong> Do tỳ hư, khí huyết không đủ để cung cấp cho các cơ quan sinh sản.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ khí ích huyết'.<br>";
+        }
+        if (menstruation.includes("không đều")) {
+            diagnosis += "<strong>Kinh nguyệt không đều:</strong> Biểu hiện của khí huyết hư hoặc tình trạng khí huyết ứ trệ.<br>";
+            treatmentText += "Khuyến nghị sử dụng bài 'Điều hòa khí huyết'.<br>";
+        }
+        if (menstruation.includes("đau")) {
+            diagnosis += "<strong>Đau khi hành kinh:</strong> Do phong hàn hoặc khí huyết ứ trệ.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Hoạt huyết thông khí'.<br>";
+        }
+
+        // Nước tiểu
+        if (urine.includes("vàng")) {
+            diagnosis += "<strong>Nước tiểu vàng:</strong> Biểu hiện của nhiệt trong cơ thể hoặc bệnh gan.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Thanh nhiệt giải độc'.<br>";
+        }
+        if (urine.includes("trắng")) {
+            diagnosis += "<strong>Nước tiểu trắng:</strong> Biểu hiện của thận hư hoặc khí huyết hư.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ thận khí'.<br>";
+        }
+        if (urine.includes("đỏ")) {
+            diagnosis += "<strong>Nước tiểu đỏ:</strong> Biểu hiện của máu trong nước tiểu, có thể liên quan đến nhiễm trùng hoặc thận yếu.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ thận, giải độc'.<br>";
+        }
+        if (urine.includes("đục")) {
+            diagnosis += "<strong>Nước tiểu đục:</strong> Biểu hiện của bệnh thận hoặc tỳ hư, khó tiêu hóa.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ tỳ thận'.<br>";
+        }
+        if (urine.includes("ít")) {
+            diagnosis += "<strong>Nước tiểu ít:</strong> Biểu hiện của thận hư hoặc khí huyết thiếu.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ thận ích khí'.<br>";
+        }
+        if (urine.includes("nhiều")) {
+            diagnosis += "<strong>Nước tiểu nhiều:</strong> Biểu hiện của nhiệt độc trong cơ thể hoặc bệnh thận.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Giải nhiệt, lợi tiểu'.<br>";
+        }
+
+        // Rêu lưỡi
+        if (tongueCoat.includes("dày")) {
+            diagnosis += "<strong>Rêu lưỡi dày:</strong> Biểu hiện của nhiệt hoặc ẩm thấp tích tụ trong cơ thể.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Giải độc, thanh nhiệt'.<br>";
+        }
+        if (tongueCoat.includes("mỏng")) {
+            diagnosis += "<strong>Rêu lưỡi mỏng:</strong> Biểu hiện của khí huyết hư hoặc tỳ hư.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ khí, ích huyết'.<br>";
+        }
+        if (tongueCoat.includes("trắng")) {
+            diagnosis += "<strong>Rêu lưỡi trắng:</strong> Biểu hiện của khí hư, hoặc do lạnh trong cơ thể.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ khí, ôn lạnh'.<br>";
+        }
+        if (tongueCoat.includes("vàng")) {
+            diagnosis += "<strong>Rêu lưỡi vàng:</strong> Biểu hiện của nhiệt trong cơ thể, có thể là gan nóng hoặc nhiệt độc.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Thanh nhiệt'.<br>";
+        }
+        if (tongueCoat.includes("đen")) {
+            diagnosis += "<strong>Rêu lưỡi đen:</strong> Biểu hiện của khí huyết ứ trệ hoặc độc tố trong cơ thể.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Giải độc'.<br>";
+        }
+        if (tongueCoat.includes("nâu")) {
+            diagnosis += "<strong>Rêu lưỡi nâu:</strong> Biểu hiện của nhiệt hoặc ẩm thấp kéo dài.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Thanh nhiệt, giải độc'.<br>";
+        }
+
+        // Mạch
+        if (pulse.includes("trầm")) {
+            diagnosis += "<strong>Mạch trầm:</strong> Biểu hiện của khí huyết hư hoặc huyết hàn.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ khí hoàn'.<br>";
+        }
+        if (pulse.includes("trì")) {
+            diagnosis += "<strong>Mạch trì:</strong> Biểu hiện của khí huyết ứ trệ, tắc nghẽn dòng chảy của khí.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Giải huyết'.<br>";
+        }
+        if (pulse.includes("phù")) {
+            diagnosis += "<strong>Mạch phù:</strong> Biểu hiện của tình trạng ứ nước hoặc thận yếu.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Giải thũng'.<br>";
+        }
+        if (pulse.includes("sóc")) {
+            diagnosis += "<strong>Mạch sóc:</strong> Biểu hiện của khí huyết không ổn định, thường gặp trong tình trạng suy nhược cơ thể.<br>";
+            treatmentText += "Khuyến nghị dùng bài 'Bổ khí huyết'.<br>";
+        }
+
+        // Hiển thị kết quả
+        if (isNormal) {
+            document.getElementById('diagnosis').innerHTML = diagnosis;
+            document.getElementById('treatmentText').innerHTML = treatmentText;
+        } else {
+            document.getElementById('diagnosis').innerHTML = diagnosis;
+            document.getElementById('treatmentText').innerHTML = treatmentText;
+        }
+
         document.getElementById('result').style.display = "block";
-
-        // Hiển thị phương pháp điều trị
-        document.getElementById('treatmentText').textContent = treatmentText;
         document.getElementById('treatment').style.display = "block";
     }
 </script>
