@@ -5,119 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ứng Dụng Phân Tích Tình Trạng Sức Khỏe</title>
     <style>
-  /* Tải phông chữ từ Google Fonts */ 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap'); /* Thêm phông chữ Poppins */
+        /* Tải phông chữ từ Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
 
-/* Cấu hình chung */
-body {
-    font-family: 'Roboto', sans-serif; /* Phông chữ mặc định là Roboto */
-    background-color: #121212; /* Nền trang đen */
-    color: #fff; /* Màu chữ trắng */
-    margin: 0;
-    padding: 20px;
-    line-height: 1.6; /* Khoảng cách dòng để dễ đọc */
-}
+        /* Cấu hình chung */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
 
-/* Tiêu đề */
-h1, h2 {
-    color: #fff; /* Màu chữ trắng cho tiêu đề */
-    text-align: center;
-    font-family: 'Poppins', sans-serif; /* Sử dụng phông chữ Poppins cho tiêu đề */
-    font-weight: 700; /* Làm cho tiêu đề đậm hơn */
-    font-size: 2.5rem; /* Kích thước tiêu đề lớn */
-    letter-spacing: 1px; /* Tăng khoảng cách giữa các chữ cái để tiêu đề dễ đọc hơn */
-    margin-bottom: 20px;
-}
+        /* Tiêu đề */
+        h1, h2 {
+            color: #ff6f61; /* Màu đỏ cam nổi bật */
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
 
-/* Form nhập liệu */
-form {
-    background-color: #333; /* Nền tối cho form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Mờ tối hơn cho shadow */
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
+        /* Form nhập liệu */
+        form {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-/* Nhãn */
-label {
-    font-size: 18px; /* Tăng kích thước chữ cho nhãn */
-    color: #ccc; /* Màu chữ nhạt hơn cho nhãn */
-    font-weight: 500; /* Làm cho nhãn đậm hơn một chút */
-    margin-bottom: 5px;
-}
+        /* Nhãn */
+        label {
+            font-size: 18px;
+            color: #ffcc00; /* Màu vàng nổi bật */
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
 
-/* Trường nhập liệu */
-input[type="text"] {
-    width: 100%;
-    padding: 12px; /* Tăng khoảng cách trong ô nhập liệu */
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #444; /* Viền mờ hơn */
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #555; /* Nền tối cho input */
-    color: #fff; /* Chữ trắng cho input */
-    box-sizing: border-box;
-}
+        /* Trường nhập liệu */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #2e2e2e;
+            color: #e0e0e0;
+            box-sizing: border-box;
+        }
 
-/* Nút bấm */
-button {
-    background-color: #4CAF50; /* Nút bấm màu xanh lá */
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px; /* Kích thước chữ nút lớn hơn */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500; /* Làm cho chữ nút đậm hơn */
-}
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff6f61;
+            background-color: #333;
+        }
 
-button:hover {
-    background-color: #45a049; /* Màu nút khi hover */
-}
+        /* Nút bấm */
+        button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
 
-/* Kết quả */
-.result {
-    background-color: #333; /* Nền tối cho kết quả */
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    display: none;
-}
+        button:hover {
+            background-color: #d4554f;
+        }
 
-.result h3 {
-    color: #fff; /* Màu chữ trắng cho tiêu đề kết quả */
-    font-size: 20px; /* Kích thước tiêu đề kết quả lớn hơn */
-    font-family: 'Poppins', sans-serif; /* Sử dụng phông chữ Poppins cho tiêu đề kết quả */
-    font-weight: 700; /* Tiêu đề kết quả đậm */
-}
+        /* Kết quả */
+        .result {
+            background-color: #1e1e1e;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
 
-.result strong {
-    color: #e74c3c; /* Màu đỏ cho phần mạnh mẽ trong kết quả */
-    font-weight: 700; /* Làm chữ trong strong đậm */
-}
+        .result h3 {
+            color: #ffcc00;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
 
-/* Điều chỉnh khoảng cách và cân chỉnh */
-.section {
-    margin-bottom: 30px;
-}
+        .result strong {
+            color: #e74c3c;
+            font-weight: 700;
+        }
 
-.section label {
-    font-size: 18px;
-}
+        /* Điều chỉnh khoảng cách và cân chỉnh */
+        .section {
+            margin-bottom: 30px;
+        }
 
-.section input, .section select {
-    font-size: 16px;
-}
+        .section label {
+            font-size: 18px;
+        }
 
-
+        .section input, .section select {
+            font-size: 16px;
+        }
     </style>
 </head>
+
 <body>
 
 <h1>Ứng Dụng Phân Tích Tình Trạng Sức Khỏe</h1>
